@@ -1,0 +1,19 @@
+{
+    "name": "aalakkad/ajax-forwarder",
+    "description": "Laravel package acts like a proxy for AJAX requests to remote server.",
+    "license": "MIT",
+    "keywords": ["laravel", "ajax", "forwarder", "proxy", "middleware"],
+    "authors": [
+        {
+            "name": "Ammar Alakkad",
+            "email": "am.alakkad@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+            "psr-4": [
+                "AAlakkad\\": "src/"
+            ]
+    }
+}
