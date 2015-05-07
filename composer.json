@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "illuminate/support": "~5.0",
+        "laravel/framework": "~5.0",
         "guzzlehttp/guzzle": "~5.2",
         "monolog/monolog": "~1.13"
     },
