@@ -1,5 +1,8 @@
 <?php
+$configKey = "forwarder";
 
-\Route::get('ajax', function(){
-    return "Hi, from AJAX Forwarder!";
-});
+Route::get(Config::get("{$configKey}.route.verb"), [
+    'as'         => 'forwarder',
+    'middleware' => Config::get("{$configKey}.middleware"),
+    'uses'       => Config::get("{$configKey}.route.action"),
+]);
