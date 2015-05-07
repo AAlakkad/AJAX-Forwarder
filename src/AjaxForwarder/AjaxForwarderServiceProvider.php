@@ -17,7 +17,7 @@ class AjaxForwarderServiceProvider extends ServiceProvider
             $this->configPath . 'forwarder.php' => config_path('forwarder.php'),
             ]);
         // include routes file
-        include __DIR__.'/../../routes.php';
+        include $this->configPath .'routes.php';
     }
 
     /**
