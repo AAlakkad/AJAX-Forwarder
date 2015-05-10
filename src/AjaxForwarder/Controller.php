@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use \Request;
+use \Response;
 
 class Controller extends BaseController
 {
@@ -18,16 +19,20 @@ class Controller extends BaseController
         $this->api = $api;
     }
 
-    public function handelGet()
+    public function handleGet($path = '')
     {
         // Check the request is AJAX
         if (!Request::ajax()) {
-            return;
+            // @TODO remove the comment from return after finish development
+            // return;
         }
         // get AJAX request data
         $data = Request::all();
         // pass the request to the remote server
-        $response = $api->sendRequest($data);
+        $response    = $this->api->sendRequest($path, $data);
+        $contentType = $response->getHeader('Content-Type');
+        $content     = $response->getBody()->getContents();
+        $status      = $response->getStatusCode();
 
         // @TODO: log:
         // + User
@@ -35,11 +40,8 @@ class Controller extends BaseController
         // + response status code (200, 404, etc.)
         // + the whole response if the status code isn't (200)
 
-        // Sending response to the user
-        // check if the response is json or not
-        if (isJson($response)) {
-            return response()->json($response);
-        }
-        return response($response);
+        // Sending response back to the user
+        return response($content, $status)
+            ->header('Content-Type', $contentType);
     }
 }
