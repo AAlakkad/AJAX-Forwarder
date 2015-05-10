@@ -17,6 +17,9 @@
     "autoload": {
             "psr-4": {
                 "AAlakkad\\": "src/"
-            }
+            },
+            "files": [
+                "helpers.php"
+            ]
     }
 }
