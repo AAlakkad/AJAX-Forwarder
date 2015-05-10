@@ -1,7 +1,7 @@
 <?php
 namespace AAlakkad\AjaxForwarder\Repositories;
 
-interface ApiRepositoriy
+interface ApiRepository
 {
     public function sendRequest(array $data);
 }

@@ -1,7 +1,7 @@
 <?php
 namespace AAlakkad\AjaxForwarder;
 
-use AAlakkad\AjaxForwarder\Repositories\ApiRepositoriy;
+use AAlakkad\AjaxForwarder\Repositories\ApiRepository;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -13,7 +13,7 @@ class Controller extends BaseController
 
     protected $api;
 
-    public function __construct(ApiRepositoriy $api)
+    public function __construct(ApiRepository $api)
     {
         $this->api = $api;
     }
