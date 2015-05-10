@@ -5,6 +5,8 @@ use AAlakkad\AjaxForwarder\Repositories\ApiRepository;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use \Auth;
+use \Log;
 use \Request;
 use \Response;
 
@@ -34,11 +36,20 @@ class Controller extends BaseController
         $content     = $response->getBody()->getContents();
         $status      = $response->getStatusCode();
 
-        // @TODO: log:
-        // + User
-        // + ajax request
-        // + response status code (200, 404, etc.)
-        // + the whole response if the status code isn't (200)
+        // Log requests
+        $logData = [
+            'user'   => Auth::user()->id,
+            'path'   => $path,
+            'data'   => $data,
+            'status' => $status,
+        ];
+        if ($status == 200) {
+            Log::info("Ajax Forwarder request.", $logData);
+        } else {
+            // the status code isn't 200, so there's a problem
+            $logData['content'] = $content;
+            Log::warning("Ajax Forwarder request.", $logData);
+        }
 
         // Sending response back to the user
         return response($content, $status)
