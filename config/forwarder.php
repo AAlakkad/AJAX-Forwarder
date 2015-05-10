@@ -2,14 +2,13 @@
 return [
     'route'      => [
         'verb'   => 'ajax',
-        'action' => 'AAlakkad\AjaxForwarder\Controller@handelGet',
+        'action' => 'AAlakkad\AjaxForwarder\Controller@handleGet',
     ],
     'middleware' => ['auth'],
     'timeout'    => 5,
     'servers'    => [
         'default' => [
-            'host' => 'localhost',
-            'base' => 'api',
+            'host' => 'http://jsonplaceholder.typicode.com',
         ],
     ],
 ];
