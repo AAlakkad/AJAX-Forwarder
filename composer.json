@@ -15,11 +15,8 @@
         "monolog/monolog": "~1.13"
     },
     "autoload": {
-            "psr-4": {
-                "AAlakkad\\": "src/"
-            },
-            "files": [
-                "helpers.php"
-            ]
+        "psr-4": {
+            "AAlakkad\\": "src/"
+        }
     }
 }
