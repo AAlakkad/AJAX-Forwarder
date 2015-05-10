@@ -5,6 +5,7 @@ use AAlakkad\AjaxForwarder\Repositories\ApiRepositoriy;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use \Request;
 
 class Controller extends BaseController
 {
@@ -19,15 +20,26 @@ class Controller extends BaseController
 
     public function handelGet()
     {
-        // @TODOs:
-        // - check the request is AJAX
-        // - get AJAX request
-        // - pass the request to the remote server
-        // - send the response to the user
-        // - log:
-        //     + User
-        //     + ajax request
-        //     + response status code (200, 404, etc.)
-        //     + the whole response if the status code isn't (200)
+        // Check the request is AJAX
+        if (!Request::ajax()) {
+            return;
+        }
+        // get AJAX request data
+        $data = Request::all();
+        // pass the request to the remote server
+        $response = $api->sendRequest($data);
+
+        // @TODO: log:
+        // + User
+        // + ajax request
+        // + response status code (200, 404, etc.)
+        // + the whole response if the status code isn't (200)
+
+        // Sending response to the user
+        // check if the response is json or not
+        if (isJson($response)) {
+            return response()->json($response);
+        }
+        return response($response);
     }
 }
