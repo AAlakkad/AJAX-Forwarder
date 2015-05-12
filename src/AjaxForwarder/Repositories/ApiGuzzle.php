@@ -22,6 +22,11 @@ class ApiGuzzle implements ApiRepository
 
     public function sendRequest($path, array $data = [])
     {
+        // Get default args from config
+        $configKey   = "forwarder";
+        $defaultArgs = Config::get("{$configKey}.servers.default.data", []);
+        // Append default args
+        $data = array_merge($defaultArgs, $data);
         if (count($data)) {
             $path .= '?';
             $path .= http_build_query($data);
