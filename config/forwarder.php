@@ -9,6 +9,7 @@ return [
     'servers'    => [
         'default' => [
             'host' => 'http://jsonplaceholder.typicode.com',
+            'data' => [],
         ],
     ],
 ];
