@@ -27,7 +27,7 @@ class Controller extends BaseController
     public function handleGet($path = '')
     {
         // Check the request is AJAX
-        if (!Request::ajax()) {
+        if (!Request::ajax() and !Request::wantsJson()) {
             return;
         }
         // get AJAX request data
