@@ -28,8 +28,7 @@ class Controller extends BaseController
     {
         // Check the request is AJAX
         if (!Request::ajax()) {
-            // @TODO remove the comment from return after finish development
-            // return;
+            return;
         }
         // get AJAX request data
         $data = Request::all();
